@@ -1,7 +1,9 @@
 package com.mycompany.quickchat;
 
 import java.util.Scanner;
-
+/**
+ * Main class for the QuickChat registration and login application.
+ */
 public class QuickChat {
 
     public static void main(String[] args) {
