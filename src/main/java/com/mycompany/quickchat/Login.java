@@ -1,7 +1,10 @@
 package com.mycompany.quickchat;
 
 import java.util.Objects;
-
+/**
+ * Handles user registration and login validation
+ * for the QuickChat application.
+ */
 public class Login {
 
     private String userName;
