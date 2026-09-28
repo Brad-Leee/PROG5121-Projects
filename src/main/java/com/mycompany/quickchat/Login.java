@@ -70,7 +70,6 @@ public class Login {
      * Oracle. n.d. Pattern Class (Java Platform SE).
      * Available at: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html
      *
-     * ICASA. 2016. Numbering Plan Regulations.
      */
     public boolean checkCellPhoneNumber() {
         return cellPhoneNumber != null
