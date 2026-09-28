@@ -64,12 +64,7 @@ public class Login {
      * international cellphone number.
      *
      * The expression allows the +27 international code
-     * followed by up to ten digits.
-     *
-     * Reference:
-     * Oracle. n.d. Pattern Class (Java Platform SE).
-     * Available at: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html
-     *
+     * followed by up to ten digits (Oracle, n.d.).
      */
     public boolean checkCellPhoneNumber() {
         return cellPhoneNumber != null
@@ -139,4 +134,12 @@ public class Login {
 
         return "Username or password incorrect, please try again.";
     }
+
+    /**
+     * References:
+     *
+     * Oracle. n.d. Pattern Class (Java Platform SE 17).
+     * Available at:
+     * https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html
+     */
 }
