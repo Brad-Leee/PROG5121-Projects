@@ -2,8 +2,10 @@ package com.mycompany.quickchat;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -66,7 +68,9 @@ public class Message {
      * @return true if the message ID is valid
      */
     public boolean checkMessageID() {
-        return messageID != null && messageID.length() <= 10;
+
+        return messageID != null
+                && messageID.length() <= 10;
     }
 
     /**
@@ -85,7 +89,9 @@ public class Message {
 
         } else {
 
-            return "Cell phone number is incorrectly formatted or does not contain an international code. Please correct the number and try again.";
+            return "Cell phone number is incorrectly formatted "
+                    + "or does not contain an international code. "
+                    + "Please correct the number and try again.";
         }
     }
 
@@ -153,23 +159,34 @@ public class Message {
         switch (choice.toLowerCase()) {
 
             case "send":
+
                 totalMessagesSent++;
+
                 return "Message successfully sent.";
 
             case "disregard":
+
                 return "Press 0 to delete the message.";
 
             case "store":
+
                 storeMessage();
+
                 return "Message successfully stored.";
 
             default:
+
                 return "Invalid message option.";
         }
     }
 
     /**
      * Stores the current message in a JSON file.
+     * Existing stored messages are retained.
+     *
+     * JSON conversion uses the Gson library.
+     * Source: Google Gson User Guide
+     * https://github.com/google/gson/blob/main/UserGuide.md
      *
      * @return true if the message was successfully stored
      */
@@ -179,15 +196,54 @@ public class Message {
                 .setPrettyPrinting()
                 .create();
 
-        try (FileWriter writer = new FileWriter("messages.json")) {
+        ArrayList<Message> messages = new ArrayList<>();
 
-            gson.toJson(this, writer);
+        /*
+         * Read existing messages from the JSON file
+         * if the file already exists and contains data.
+         */
+        try (FileReader reader =
+                new FileReader("messages.json")) {
+
+            Message[] existingMessages =
+                    gson.fromJson(reader, Message[].class);
+
+            if (existingMessages != null) {
+
+                for (Message existingMessage : existingMessages) {
+
+                    messages.add(existingMessage);
+                }
+            }
+
+        } catch (IOException e) {
+
+            /*
+             * The file may not exist yet.
+             * A new list will be created.
+             */
+        }
+
+        /*
+         * Add the current message to the list.
+         */
+        messages.add(this);
+
+        /*
+         * Write all stored messages back to the JSON file.
+         */
+        try (FileWriter writer =
+                new FileWriter("messages.json")) {
+
+            gson.toJson(messages, writer);
+
             return true;
 
         } catch (IOException e) {
 
             System.out.println(
-                    "Error storing message: " + e.getMessage());
+                    "Error storing message: "
+                    + e.getMessage());
 
             return false;
         }
@@ -212,6 +268,7 @@ public class Message {
      * @return total number of messages sent
      */
     public int returnTotalMessagess() {
+
         return totalMessagesSent;
     }
 }
