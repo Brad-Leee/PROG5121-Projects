@@ -40,7 +40,11 @@ public class QuickChat {
                 System.out.println("Username successfully captured.");
                 break;
             } else {
-                System.out.println("Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.");
+                System.out.println(
+                        "Username is not correctly formatted; "
+                        + "please ensure that your username contains "
+                        + "an underscore and is no more than five "
+                        + "characters in length.");
             }
         }
 
@@ -59,7 +63,11 @@ public class QuickChat {
                 System.out.println("Password successfully captured.");
                 break;
             } else {
-                System.out.println("Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.");
+                System.out.println(
+                        "Password is not correctly formatted; "
+                        + "please ensure that the password contains "
+                        + "at least eight characters, a capital letter, "
+                        + "a number, and a special character.");
             }
         }
 
@@ -72,13 +80,20 @@ public class QuickChat {
             cellPhoneNumber = scanner.nextLine();
 
             Login cellPhoneCheck = new Login(
-                    userName, password, cellPhoneNumber, firstName, lastName);
+                    userName,
+                    password,
+                    cellPhoneNumber,
+                    firstName,
+                    lastName);
 
             if (cellPhoneCheck.checkCellPhoneNumber()) {
                 System.out.println("Cell number successfully captured.");
                 break;
             } else {
-                System.out.println("Cell number is incorrectly formatted or does not contain an international code; please correct the number and try again.");
+                System.out.println(
+                        "Cell number is incorrectly formatted or "
+                        + "does not contain an international code; "
+                        + "please correct the number and try again.");
             }
         }
 
@@ -109,7 +124,9 @@ public class QuickChat {
         System.out.print("Enter your password: ");
         String enteredPassword = scanner.nextLine();
 
-        login.setLoginDetails(enteredUserName, enteredPassword);
+        login.setLoginDetails(
+                enteredUserName,
+                enteredPassword);
 
         /*
          * Clear if/else decision to check
@@ -120,13 +137,26 @@ public class QuickChat {
             System.out.println(login.returnLoginStatus());
 
             /*
-             * Part 2 QuickChat messaging menu
+             * Part 2 QuickChat messaging application
              */
             System.out.println();
             System.out.println("Welcome to QuickChat.");
 
+            /*
+             * The user defines the number of messages
+             * immediately after successfully logging in.
+             */
+            System.out.print(
+                    "How many messages would you like to send? ");
+
+            int numberOfMessages = scanner.nextInt();
+            scanner.nextLine();
+
             int menuOption = 0;
 
+            /*
+             * Menu continues until the user selects Quit.
+             */
             while (menuOption != 3) {
 
                 System.out.println();
@@ -143,33 +173,32 @@ public class QuickChat {
                     case 1:
 
                         /*
-                         * Ask the user how many messages
-                         * they want to enter.
-                         */
-                        System.out.print("How many messages would you like to send? ");
-                        int numberOfMessages = scanner.nextInt();
-                        scanner.nextLine();
-
-                        /*
                          * Loop through the exact number
                          * of messages selected by the user.
                          */
                         for (int i = 0; i < numberOfMessages; i++) {
 
                             System.out.println();
-                            System.out.println("Message " + (i + 1));
+                            System.out.println(
+                                    "Message " + (i + 1));
 
                             /*
                              * Capture recipient cellphone number.
                              */
-                            System.out.print("Enter recipient cellphone number: ");
-                            String recipient = scanner.nextLine();
+                            System.out.print(
+                                    "Enter recipient cellphone number: ");
+
+                            String recipient =
+                                    scanner.nextLine();
 
                             /*
                              * Capture message.
                              */
-                            System.out.print("Enter your message: ");
-                            String messageText = scanner.nextLine();
+                            System.out.print(
+                                    "Enter your message: ");
+
+                            String messageText =
+                                    scanner.nextLine();
 
                             /*
                              * Create a Message object.
@@ -210,13 +239,19 @@ public class QuickChat {
                              * with the message.
                              */
                             System.out.println();
-                            System.out.println("Choose what to do with this message:");
+                            System.out.println(
+                                    "Choose what to do with this message:");
+
                             System.out.println("1) Send");
                             System.out.println("2) Disregard");
                             System.out.println("3) Store");
 
-                            System.out.print("Enter your choice: ");
-                            int messageChoice = scanner.nextInt();
+                            System.out.print(
+                                    "Enter your choice: ");
+
+                            int messageChoice =
+                                    scanner.nextInt();
+
                             scanner.nextLine();
 
                             String choice;
@@ -254,7 +289,8 @@ public class QuickChat {
                             if (choice.equals("send")) {
 
                                 System.out.println();
-                                System.out.println(message.printMessages());
+                                System.out.println(
+                                        message.printMessages());
                             }
                         }
 
@@ -273,20 +309,28 @@ public class QuickChat {
                         break;
 
                     case 2:
+
                         System.out.println("Coming Soon.");
                         break;
 
                     case 3:
+
                         System.out.println("Goodbye.");
                         break;
 
                     default:
-                        System.out.println("Invalid option. Please select 1, 2 or 3.");
+
+                        System.out.println(
+                                "Invalid option. Please select "
+                                + "1, 2 or 3.");
                 }
             }
 
         } else {
-            System.out.println("Username or password incorrect, please try again.");
+
+            System.out.println(
+                    "Username or password incorrect, "
+                    + "please try again.");
         }
 
         scanner.close();
