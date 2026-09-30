@@ -50,7 +50,9 @@ public class Message {
         long number = 1000000000L
                 + (long) (random.nextDouble() * 9000000000L);
 
-        return String.valueOf(number);
+        String randomNumber = String.valueOf(number);
+
+        return randomNumber.substring(0, 10);
     }
 
     /**
