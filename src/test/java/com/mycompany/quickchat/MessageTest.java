@@ -8,12 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class MessageTest {
 
-    /**
-     * Tests that a valid message is accepted.
-     */
     @Test
     public void testMessageLengthSuccess() {
-
         Message message = new Message(
                 0,
                 "+27718693002",
@@ -26,13 +22,8 @@ public class MessageTest {
         );
     }
 
-    /**
-     * Tests that a message longer than 250 characters
-     * is rejected.
-     */
     @Test
     public void testMessageLengthFailure() {
-
         String longMessage = "This is a very long message "
                 + "that is used to test whether the system "
                 + "correctly identifies a message that exceeds "
@@ -54,13 +45,8 @@ public class MessageTest {
         );
     }
 
-    /**
-     * Tests that a correctly formatted international
-     * cellphone number is accepted.
-     */
     @Test
     public void testRecipientCellSuccess() {
-
         Message message = new Message(
                 0,
                 "+27718693002",
@@ -73,13 +59,8 @@ public class MessageTest {
         );
     }
 
-    /**
-     * Tests that an incorrectly formatted cellphone
-     * number is rejected.
-     */
     @Test
     public void testRecipientCellFailure() {
-
         Message message = new Message(
                 1,
                 "08575975889",
@@ -92,13 +73,8 @@ public class MessageTest {
         );
     }
 
-    /**
-     * Tests that the generated Message ID contains
-     * exactly ten digits.
-     */
     @Test
     public void testMessageID() {
-
         Message message = new Message(
                 0,
                 "+27718693002",
@@ -112,12 +88,8 @@ public class MessageTest {
         assertTrue(messageID.matches("\\d{10}"));
     }
 
-    /**
-     * Tests that the Message Hash is generated correctly.
-     */
     @Test
     public void testMessageHash() {
-
         Message message = new Message(
                 0,
                 "+27718693002",
@@ -126,15 +98,41 @@ public class MessageTest {
 
         String hash = message.createMessageHash();
 
-        assertTrue(hash.matches("\\d{2}:0:HITONIGHT"));
+        assertTrue(
+                hash.matches("\\d{2}:0:HITONIGHT")
+        );
     }
 
     /**
-     * Tests that a message can be successfully sent.
+     * Tests the remaining message hashes using a loop.
      */
     @Test
-    public void testSendMessage() {
+    public void testRemainingMessageHashesInLoop() {
 
+        for (int messageNumber = 1;
+                messageNumber <= 5;
+                messageNumber++) {
+
+            Message message = new Message(
+                    messageNumber,
+                    "+27718693002",
+                    "Hi Mike, can you join us for dinner tonight?"
+            );
+
+            String hash = message.createMessageHash();
+
+            assertTrue(
+                    hash.matches(
+                            "\\d{2}:"
+                            + messageNumber
+                            + ":HITONIGHT"
+                    )
+            );
+        }
+    }
+
+    @Test
+    public void testSendMessage() {
         Message message = new Message(
                 0,
                 "+27718693002",
@@ -147,12 +145,8 @@ public class MessageTest {
         );
     }
 
-    /**
-     * Tests that a message can be disregarded.
-     */
     @Test
     public void testDisregardMessage() {
-
         Message message = new Message(
                 1,
                 "08575975889",
@@ -165,12 +159,8 @@ public class MessageTest {
         );
     }
 
-    /**
-     * Tests that a message can be stored.
-     */
     @Test
     public void testStoreMessage() {
-
         Message message = new Message(
                 1,
                 "+27718693002",
@@ -183,12 +173,8 @@ public class MessageTest {
         );
     }
 
-    /**
-     * Tests that a message can be stored in JSON format.
-     */
     @Test
     public void testStoreMessageInJson() {
-
         Message message = new Message(
                 0,
                 "+27718693002",
