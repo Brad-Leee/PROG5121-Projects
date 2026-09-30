@@ -88,6 +88,29 @@ public class MessageTest {
         assertTrue(messageID.matches("\\d{10}"));
     }
 
+    /**
+     * Tests that multiple Message IDs are generated automatically
+     * and that each ID is a valid ten-digit number.
+     */
+    @Test
+    public void testMultipleMessageIDs() {
+
+        for (int i = 0; i < 5; i++) {
+
+            Message message = new Message(
+                    i,
+                    "+27718693002",
+                    "Hi Mike, can you join us for dinner tonight?"
+            );
+
+            String messageID = message.getMessageID();
+
+            assertNotNull(messageID);
+            assertEquals(10, messageID.length());
+            assertTrue(messageID.matches("\\d{10}"));
+        }
+    }
+
     @Test
     public void testMessageHash() {
         Message message = new Message(
