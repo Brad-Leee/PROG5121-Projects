@@ -1,6 +1,21 @@
-{
-  "messageID": "5348276988",
-  "messageNumber": 0,
-  "recipient": "+27718693002",
-  "message": "Hi Mike, can you join us for dinner tonight?"
-}
+[
+  {
+    "messageID": "8732411029",
+    "messageNumber": 1,
+    "recipient": "+27718693002",
+    "message": "Hi Keegan, did you receive the payment?"
+  },
+  {
+    "messageID": "2583815457",
+    "messageNumber": 0,
+    "recipient": "+27718693002",
+    "message": "Hi Mike, can you join us for dinner tonight?"
+  },
+  {
+    "messageID": "9452928513",
+    "messageNumber": 0,
+    "recipient": "+27718693002",
+    "message": "Hi Mike, can you join us for dinner tonight?",
+    "messageHash": "94:0:HITONIGHT"
+  }
+]
